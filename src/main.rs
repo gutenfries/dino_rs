@@ -131,17 +131,21 @@ impl State {
 		}
 		if let Some(key) = ctx.key {
 			match key {
+				// pause
 				VirtualKeyCode::P => self.mode = GameMode::Pause,
+				// jump
 				VirtualKeyCode::Space => {
 					if self.player.y == FLOOR {
 						self.player.jump();
 					}
 				}
+				// jump
 				VirtualKeyCode::Up => {
 					if self.player.y == FLOOR {
 						self.player.jump();
 					}
 				}
+				// exit
 				VirtualKeyCode::Escape => ctx.quitting = true,
 				VirtualKeyCode::Q => ctx.quitting = true,
 				_ => {}
@@ -164,11 +168,13 @@ impl State {
 		if (self.obstacles[newlen - 1].x - self.player.x) < (SCREEN_WIDTH * 9 / 10) {
 			self.obstacles.push(Obstacle::new(self.player.x + SCREEN_WIDTH, self.score));
 		}
+		// display score && onscreen obstacles
 		ctx.print_color(0, 1, RGB::named(ORANGE1), color, &format!("Score: {}", self.score));
 		ctx.print_color(0, 2, RGB::named(ORANGE1), color, &format!("Obstacles: {}", newlen));
 	}
 
 	#[allow(clippy::vec_init_then_push)]
+	// start AND restart the game
 	fn restart(&mut self) {
 		self.player = Player::new(PLAYER_COLUMN, FLOOR);
 		self.frame_time = 0.0;
@@ -186,8 +192,10 @@ impl State {
 		ctx.print_centered(10, "( Q || Esc ) Quit Game");
 		if let Some(key) = ctx.key {
 			match key {
+				// start game
 				VirtualKeyCode::P => self.restart(),
 				VirtualKeyCode::Space => self.restart(),
+				// exit
 				VirtualKeyCode::Q => ctx.quitting = true,
 				VirtualKeyCode::C => ctx.quitting = true,
 				VirtualKeyCode::Escape => ctx.quitting = true,
@@ -197,6 +205,7 @@ impl State {
 	}
 
 	fn dead(&mut self, ctx: &mut BTerm) {
+		// clear screen
 		ctx.cls();
 		ctx.print_centered(3, "DEAD");
 		ctx.print_centered(6, &format!("You earned {} points", self.score));
@@ -204,8 +213,10 @@ impl State {
 		ctx.print_centered(10, "( Q || Esc ) Quit Game");
 		if let Some(key) = ctx.key {
 			match key {
+				// restart
 				VirtualKeyCode::P => self.restart(),
 				VirtualKeyCode::Space => self.restart(),
+				// exit
 				VirtualKeyCode::Q => ctx.quitting = true,
 				VirtualKeyCode::C => ctx.quitting = true,
 				VirtualKeyCode::Escape => ctx.quitting = true,
@@ -233,6 +244,7 @@ impl GameState for State {
 fn main() -> BError {
 	let context = BTermBuilder::simple80x50()
 		.with_title("Dino_rs")
+		// important for font size
 		.with_automatic_console_resize(false)
 		.with_fitscreen(true)
 		.with_gutter(8)
