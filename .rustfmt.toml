@@ -1,0 +1,23 @@
+# OTBS
+unstable_features = true
+reorder_imports = true
+imports_granularity = "Crate"
+use_small_heuristics = "Max"
+comment_width = 100
+wrap_comments = true
+binop_separator = "Back"
+trailing_comma = "Vertical"
+trailing_semicolon = true
+use_field_init_shorthand = true
+hard_tabs = true
+newline_style = "unix"
+use_try_shorthand = true
+version = "Two"
+error_on_line_overflow = true
+format_code_in_doc_comments = true
+format_macro_bodies = true
+format_macro_matchers = true
+format_strings = true
+group_imports = "StdExternalCrate"
+normalize_doc_attributes = true
+tab_spaces = 4
