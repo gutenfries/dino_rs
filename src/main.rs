@@ -138,17 +138,17 @@ impl State {
 					if self.player.y == FLOOR {
 						self.player.jump();
 					}
-				}
+				},
 				// jump
 				VirtualKeyCode::Up => {
 					if self.player.y == FLOOR {
 						self.player.jump();
 					}
-				}
+				},
 				// exit
 				VirtualKeyCode::Escape => ctx.quitting = true,
 				VirtualKeyCode::Q => ctx.quitting = true,
-				_ => {}
+				_ => {},
 			}
 		}
 		self.player.render(ctx, color);
@@ -199,7 +199,7 @@ impl State {
 				VirtualKeyCode::Q => ctx.quitting = true,
 				VirtualKeyCode::C => ctx.quitting = true,
 				VirtualKeyCode::Escape => ctx.quitting = true,
-				_ => {}
+				_ => {},
 			}
 		}
 	}
@@ -220,7 +220,7 @@ impl State {
 				VirtualKeyCode::Q => ctx.quitting = true,
 				VirtualKeyCode::C => ctx.quitting = true,
 				VirtualKeyCode::Escape => ctx.quitting = true,
-				_ => {}
+				_ => {},
 			}
 		}
 	}
